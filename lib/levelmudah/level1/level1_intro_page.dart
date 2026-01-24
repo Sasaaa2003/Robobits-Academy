@@ -140,7 +140,8 @@ void dispose() {
                   opacity: _showText ? 1 : 0,
                   duration: const Duration(milliseconds: 800),
                   child: const Text(
-                    "Selamat datang di Compile Town!",
+                    "Selamat datang di Lembah Compile.\n"
+                    "Mari mulai dengan mengenali bentuk agar sistem dapat memahami dunia.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,

@@ -100,7 +100,7 @@ class _SedangLevel3SedangIntroPageState extends State<SedangLevel3SedangIntroPag
       body: Stack(
         children: [
           Image.asset(
-            "assets/bg_network.jpg",
+            "assets/bg_network.png",
             width: double.infinity,
             height: double.infinity,
             fit: BoxFit.cover,
@@ -135,9 +135,7 @@ class _SedangLevel3SedangIntroPageState extends State<SedangLevel3SedangIntroPag
                   opacity: _showText ? 1 : 0,
                   duration: const Duration(milliseconds: 800),
                   child: const Text(
-                    "LEVEL 3 — SEDANG\n\n"
-                    "Algoritma bukan sekadar kode.\n"
-                    "Pahami alurnya, prediksi hasilnya!",
+                    "Selamat datang di tahap penentuan urutan.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'sign_up_page.dart';
 import 'home_page.dart';
+import 'services/auth_service.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -195,8 +197,9 @@ class _LoginPageState extends State<LoginPage>
 
                 const SizedBox(height: 36),
 
-                _field("Username", Icons.person, false,
-                    _usernameCtrl, null),
+                _field("Email", Icons.email, false,
+    _usernameCtrl, null),
+
                 const SizedBox(height: 16),
                 _field("Password", Icons.lock, true,
                     _passwordCtrl, _passwordFocus),
@@ -210,22 +213,42 @@ class _LoginPageState extends State<LoginPage>
                   onTapUp: (_) => _buttonCtrl.forward(),
                   onTapCancel: () => _buttonCtrl.forward(),
                   onTap: () async {
-                    await _playClick();
+  await _playClick();
 
-                    if (_usernameCtrl.text.isEmpty ||
-                        _passwordCtrl.text.isEmpty) {
-                      _showToast();
-                      return;
-                    }
+  if (_usernameCtrl.text.isEmpty || _passwordCtrl.text.isEmpty) {
+    _showToast();
+    return;
+  }
 
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) =>
-                            HomePage(username: _usernameCtrl.text),
-                      ),
-                    );
-                  },
+  try {
+    final user = await AuthService().login(
+      _usernameCtrl.text.trim(),
+      _passwordCtrl.text.trim(),
+    );
+
+    if (user != null) {
+      final username = await AuthService().getUsername();
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (_) => HomePage(username: username),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Login gagal")),
+      );
+    }
+  } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text("Login error: $e")),
+    );
+  }
+},
+
+
+
                   child: ScaleTransition(
                     scale: _buttonScale,
                     child: Container(

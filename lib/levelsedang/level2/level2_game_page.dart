@@ -109,7 +109,7 @@ class _SedangLevel2GamePageState extends State<SedangLevel2GamePage> {
       body: Stack(
         children: [
           Image.asset(
-            "assets/bg_network.jpg",
+            "assets/bg_network.png",
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
@@ -133,10 +133,13 @@ class _SedangLevel2GamePageState extends State<SedangLevel2GamePage> {
                         const SizedBox(width: 20),
                         Image.asset(robotAsset, height: 80),
                         const SizedBox(width: 12),
-                        const Text(
-                          "Hitunglah!",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                        const Expanded(
+                          child: Text(
+                            "Beberapa bentuk rumah tampil bersamaan.\n"
+                            "Sistem meminta jumlah bentuk tertentu untuk verifikasi.",
+                            style: TextStyle(
+                                fontSize: 12, fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ],
                     ),
@@ -158,7 +161,7 @@ class _SedangLevel2GamePageState extends State<SedangLevel2GamePage> {
 
           Positioned(
             left: 24,
-            bottom: 24,
+            bottom: 24, 
             child: GestureDetector(
               onTap: () async {
                 await _sfxPlayer.play(AssetSource('Audios/click.wav'));

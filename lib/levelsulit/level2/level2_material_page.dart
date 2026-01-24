@@ -86,7 +86,7 @@ class _SulitLevel2SulitMaterialPageState
         children: [
           /// ===== BACKGROUND =====
           Image.asset(
-            "assets/bg_chips.jpg",
+            "assets/bg_chips.png",
             width: double.infinity,
             height: double.infinity,
             fit: BoxFit.cover,
@@ -194,14 +194,9 @@ class _SulitLevel2SulitMaterialPageState
                         isRepeatingAnimation: false,
                         animatedTexts: [
                           TypewriterAnimatedText(
-                            "Pada level ini kita membahas\n"
-                            "perangkat INPUT.\n\n"
-                            "Keyboard dan mouse berfungsi\n"
-                            "untuk memasukkan perintah\n"
-                            "ke dalam komputer.\n\n"
-                            "Tanpa input device,\n"
-                            "komputer tidak dapat menerima\n"
-                            "instruksi dari pengguna.",
+                            "Sistem komputasi tidak menerima data yang tidak lengkap.\n\n"
+                            "RoboBits harus melengkapi angka yang hilang dengan memahami pola dan urutan matematika."
+                            "Ketepatan angka menentukan kestabilan sistem.",
                             speed:
                                 const Duration(milliseconds: 35),
                             cursor: "|",
@@ -215,14 +210,6 @@ class _SulitLevel2SulitMaterialPageState
                           ),
                         ],
                       ),
-                    ),
-
-                    const SizedBox(height: 28),
-
-                    /// ===== IMAGE MATERI =====
-                    Image.asset(
-                      "assets/keyboard_mouse.png",
-                      height: 180,
                     ),
 
                     const SizedBox(height: 20),

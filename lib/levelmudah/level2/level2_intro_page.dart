@@ -134,7 +134,8 @@ class _Level2IntroPageState extends State<Level2IntroPage>
                   opacity: _showText ? 1 : 0,
                   duration: const Duration(milliseconds: 800),
                   child: const Text(
-                    "Level 2 dimulai!\nFokus dan hitung dengan teliti!",
+                    "Selamat melanjutkan perjalanan. \n"
+                    "Kini saatnya menghitung dengan tepat agar sistem tetap seimbang.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,

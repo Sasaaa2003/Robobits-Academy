@@ -191,9 +191,9 @@ void initState() {
                         animatedTexts: [
                           TypewriterAnimatedText(
                             "Halo, adik-adik!\n"
-                            "Ini namanya monitor.\n\n"
-                            "Monitor adalah layar komputer yang "
-                            "menampilkan gambar, tulisan, dan video.\n\n"
+                            "Ini namanya monitor.\n"
+                            "Di Lembah Compile,semua informasi ditampilkan "
+                            "melalui monitor.\n"
                             "Dengan monitor, kita bisa melihat "
                             "apa yang sedang dikerjakan komputer.",
                             speed:
@@ -211,7 +211,7 @@ void initState() {
                       ),
                     ),
 
-                    const SizedBox(height: 28),
+                    const SizedBox(height: 30),
 
                     // ===== MONITOR (DIAM) =====
                     Image.asset(

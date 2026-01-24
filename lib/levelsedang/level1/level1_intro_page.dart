@@ -103,7 +103,7 @@ class _SedangLevel1IntroPageState extends State<SedangLevel1IntroPage>
         children: [
           // ===== BACKGROUND =====
           Image.asset(
-            "assets/bg_network.jpg",
+            "assets/bg_network.png",
             width: double.infinity,
             height: double.infinity,
             fit: BoxFit.cover,
@@ -143,9 +143,9 @@ class _SedangLevel1IntroPageState extends State<SedangLevel1IntroPage>
                   opacity: _showText ? 1 : 0,
                   duration: const Duration(milliseconds: 800),
                   child: const Text(
-                    "Level Sedang 1 dimulai!\n"
-                    "Tantangan lebih sulit menantimu.\n"
-                    "Gunakan logikamu dengan cermat!",
+                    "Selamat datang di Zona Konstruksi Data\n"
+                    "Setiap bentuk memiliki fungsi.\n",
+                    
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,

@@ -212,7 +212,7 @@ class _SedangLevel1GamePageState extends State<SedangLevel1GamePage> {
       body: Stack(
         children: [
           Image.asset(
-            "assets/bg_network.jpg",
+            "assets/bg_network.png",
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
@@ -295,6 +295,7 @@ class _SedangLevel1GamePageState extends State<SedangLevel1GamePage> {
                               const SizedBox(width: 12),
                               const Expanded(
                                 child: Text(
+                                  "RoboBits harus mengenali bentuk yang sesuai dengan pola yang diminta."
                                   "Pilih 3 bentuk\nuntuk membentuk rumah!",
                                   style: TextStyle(
                                       fontSize: 13,

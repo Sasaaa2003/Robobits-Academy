@@ -109,7 +109,7 @@ class _SulitLevel2GamePageState extends State<SulitLevel2GamePage> {
       body: Stack(
         children: [
           Image.asset(
-            "assets/bg_chips.jpg",
+            "assets/bg_chips.png",
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
@@ -179,7 +179,8 @@ class _SulitLevel2GamePageState extends State<SulitLevel2GamePage> {
           const SizedBox(width: 12),
           const Expanded(
             child: Text(
-              "Lengkapi angka\npada sarang lebah!",
+              "Deretan angka muncul, tetapi beberapa bagian hilang.\nSistem menunggu angka yang tepat untuk melanjutkan proses."
+              "Lengkapi angka pada sarang lebah!",
               style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700),
             ),
           ),

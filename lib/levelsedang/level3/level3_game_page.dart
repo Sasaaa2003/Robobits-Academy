@@ -148,7 +148,7 @@ class _SedangLevel3GamePageState extends State<SedangLevel3GamePage> {
         children: [
           // ===== BACKGROUND =====
           Image.asset(
-            "assets/bg_network.jpg",
+            "assets/bg_network.png",
             width: double.infinity,
             height: double.infinity,
             fit: BoxFit.cover,
@@ -223,6 +223,8 @@ class _SedangLevel3GamePageState extends State<SedangLevel3GamePage> {
                           const SizedBox(width: 12),
                           const Expanded(
                             child: Text(
+                              "Robot-robot berdiri dengan tinggi yang berbeda."
+                              "Sistem menunggu susunan yang tepat agar jalur produksi dapat berjalan."
                               "Urutkan robot dari paling tinggi\n"
                               "ke paling pendek dengan\n"
                               "cara drag & drop!",

@@ -84,7 +84,7 @@ class _SedangLevel1MaterialPageState extends State<SedangLevel1MaterialPage>
         children: [
           // ===== BACKGROUND =====
           Image.asset(
-            "assets/bg_network.jpg",
+            "assets/bg_network.png",
             width: double.infinity,
             height: double.infinity,
             fit: BoxFit.cover,
@@ -197,11 +197,9 @@ class _SedangLevel1MaterialPageState extends State<SedangLevel1MaterialPage>
                         isRepeatingAnimation: false,
                         animatedTexts: [
                           TypewriterAnimatedText(
-                            "Sekarang kita masuk ke tantangan logika.\n\n"
-                            "Perhatikan setiap informasi yang muncul "
-                            "dengan lebih teliti.\n\n"
-                            "Analisis dengan baik sebelum "
-                            "menentukan jawaban yang benar.",
+                            "Di zona ini, RoboBits mempelajari bentuk sebagai struktur dasar."
+                            "Logika membantu mengenali persamaan dan perbedaan bentuk rumah agar dapat diklasifikasikan dengan benar."
+                            "Kemampuan ini penting untuk memahami struktur data.",
                             speed:
                                 const Duration(milliseconds: 40),
                             cursor: "|",

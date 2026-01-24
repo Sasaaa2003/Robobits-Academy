@@ -101,7 +101,7 @@ class _SulitLevel1SulitIntroPageState extends State<SulitLevel1SulitIntroPage>
       body: Stack(
         children: [
           Image.asset(
-            "assets/bg_chips.jpg",
+            "assets/bg_chips.png",
             width: double.infinity,
             height: double.infinity,
             fit: BoxFit.cover,
@@ -136,10 +136,11 @@ class _SulitLevel1SulitIntroPageState extends State<SulitLevel1SulitIntroPage>
                   opacity: _showText ? 1 : 0,
                   duration: const Duration(milliseconds: 800),
                   child: const Text(
-                    "Level Sulit Dimulai!\nTetap tenang dan fokus ya!",
+                    "Selamat datang di Inti Kompilasi. \n"
+                    "Di sinilah logika sistem bekerja.\n",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 255, 255, 255),
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),

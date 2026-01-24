@@ -226,6 +226,8 @@ class _Level2GamePageState extends State<Level2GamePage> {
                               const SizedBox(width: 12),
                               const Expanded(
                                 child: Text(
+                                  "Beberapa monitor aktif bersamaan.\n"
+                                  "Sistem meminta jumlah yang tepat untuk sinkronisasi.\n\n"
                                   "Tugasmu:\nHitung berapa jumlah monitor!",
                                   style: TextStyle(
                                     fontSize: 13,

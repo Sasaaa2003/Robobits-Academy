@@ -78,7 +78,7 @@ class _SulitLevel1SulitMaterialPageState extends State<SulitLevel1SulitMaterialP
       body: Stack(
         children: [
           Image.asset(
-            "assets/bg_chips.jpg",
+            "assets/bg_chips.png",
             width: double.infinity,
             height: double.infinity,
             fit: BoxFit.cover,
@@ -184,12 +184,12 @@ class _SulitLevel1SulitMaterialPageState extends State<SulitLevel1SulitMaterialP
                         isRepeatingAnimation: false,
                         animatedTexts: [
                           TypewriterAnimatedText(
-                            "Sekarang kita masuk level sulit!\n\n"
-                            "Monitor berfungsi sebagai output device.\n"
-                            "Artinya, monitor menampilkan hasil proses\n"
-                            "yang dilakukan oleh komputer.\n\n"
-                            "Tanpa monitor, kita tidak bisa\n"
-                            "melihat hasil kerja komputer.",
+                            "Di inti sistem, setiap soket memiliki fungsi"
+                            "yang saling berkaitan.\n"
+                            "Logika membantu RoboBits \n"
+                            "menentukan hubungan yang tepat antar komponen.\n"
+                            "Menghubungkan soket dengan benar berarti"
+                            "memahami kecocokan dan pola hubungan.",
                             speed: const Duration(milliseconds: 35),
                             cursor: "|",
                             textAlign: TextAlign.center,
@@ -204,15 +204,6 @@ class _SulitLevel1SulitMaterialPageState extends State<SulitLevel1SulitMaterialP
                       ),
                     ),
 
-                    const SizedBox(height: 28),
-
-                    // ===== MONITOR =====
-                    Image.asset(
-                      "assets/monitor.png",
-                      height: 180,
-                    ),
-
-                    const SizedBox(height: 20),
                   ],
                 ),
               ),

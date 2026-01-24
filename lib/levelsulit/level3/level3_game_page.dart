@@ -71,7 +71,7 @@ class _SulitLevel3GamePageState extends State<SulitLevel3GamePage> {
       body: Stack(
         children: [
           Image.asset(
-            "assets/bg_chips.jpg",
+            "assets/bg_chips.png",
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
@@ -210,7 +210,8 @@ class _SulitLevel3GamePageState extends State<SulitLevel3GamePage> {
           const SizedBox(width: 12),
           const Expanded(
             child: Text(
-              "Tarik kabel lampu\nsesuai URUTAN!",
+              "lampu yang mengacaukan alur kerja."
+              "\nRoboBits harus menyusunnya kembali agar lampu dapat menyala.",
               style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700),
             ),
           ),

@@ -103,7 +103,7 @@ class _SedangLevel2IntroPageState extends State<SedangLevel2IntroPage>
         children: [
           // ===== BACKGROUND =====
           Image.asset(
-            "assets/bg_network.jpg",
+            "assets/bg_network.png",
             width: double.infinity,
             height: double.infinity,
             fit: BoxFit.cover,
@@ -143,9 +143,7 @@ class _SedangLevel2IntroPageState extends State<SedangLevel2IntroPage>
                   opacity: _showText ? 1 : 0,
                   duration: const Duration(milliseconds: 800),
                   child: const Text(
-                    "Level Sedang 2 dimulai!\n"
-                    "Saatnya menguji kemampuan matematikamu.\n"
-                    "Hitung dengan cepat dan tepat!",
+                    "Selamat melanjutkan. Hitungan yang tepat menjaga keseimbangan.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,

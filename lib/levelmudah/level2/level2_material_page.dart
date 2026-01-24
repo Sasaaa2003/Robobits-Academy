@@ -185,11 +185,11 @@ class _Level2MaterialPageState extends State<Level2MaterialPage>
                         isRepeatingAnimation: false,
                         animatedTexts: [
                           TypewriterAnimatedText(
-                            "Sekarang kita belajar menghitung.\n\n"
-                            "Perhatikan jumlah monitor yang muncul "
-                            "di layar dengan baik.\n\n"
-                            "Hitung satu per satu "
-                            "agar tidak salah memilih jawaban.",
+                            "Setelah mengenali bentuk,\n "
+                            "sistem membutuhkan jumlah yang pasti.\n\n"
+                            "Matematika membantu RoboBits memastikan perhitungan akurat.\n "
+                            "Menghitung dengan benar penting agar sistem tidak salah memproses data.\n"
+                            "Ayo, bantu RoboBits belajar menghitung!",
                             speed: const Duration(milliseconds: 40),
                             cursor: "|",
                             textAlign: TextAlign.center,

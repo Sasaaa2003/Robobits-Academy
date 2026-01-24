@@ -84,7 +84,7 @@ class _SedangLevel2MaterialPageState extends State<SedangLevel2MaterialPage>
         children: [
           // ===== BACKGROUND =====
           Image.asset(
-            "assets/bg_network.jpg",
+            "assets/bg_network.png",
             width: double.infinity,
             height: double.infinity,
             fit: BoxFit.cover,

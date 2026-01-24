@@ -134,7 +134,8 @@ class _Level3IntroPageState extends State<Level3IntroPage>
                   opacity: _showText ? 1 : 0,
                   duration: const Duration(milliseconds: 800),
                   child: const Text(
-                    "Level 3 dimulai!\nSaatnya berpikir lebih strategis!",
+                    "Selamat datang di tantangan berikutnya. \n"
+                    "Tentukan arah dan susun langkah untuk mencapai tujuan.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,

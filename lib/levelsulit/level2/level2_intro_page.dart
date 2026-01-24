@@ -113,7 +113,7 @@ class _SulitLevel2SulitIntroPageState
         children: [
           /// ===== BACKGROUND =====
           Image.asset(
-            "assets/bg_chips.jpg",
+            "assets/bg_chips.png",
             width: double.infinity,
             height: double.infinity,
             fit: BoxFit.cover,
@@ -154,10 +154,11 @@ class _SulitLevel2SulitIntroPageState
                   opacity: _showText ? 1 : 0,
                   duration: const Duration(milliseconds: 800),
                   child: const Text(
-                    "Level Sulit 2 Dimulai!\nPerhatikan sambungan dengan baik!",
+                    "Selamat melanjutkan. \n"
+                    "Perhitungan kini menentukan keputusan sistem.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 255, 255, 255),
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),

@@ -78,7 +78,7 @@ class _Level3SedangMaterialPageState extends State<Level3SedangMaterialPage>
       body: Stack(
         children: [
           Image.asset(
-            "assets/bg_network.jpg",
+            "assets/bg_network.png",
             width: double.infinity,
             height: double.infinity,
             fit: BoxFit.cover,

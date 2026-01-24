@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'services/auth_service.dart';
 
 
 class SignUpPage extends StatefulWidget {
@@ -191,15 +192,39 @@ class _SignUpPageState extends State<SignUpPage>
 
                 // === SIGN UP BUTTON ===
                 GestureDetector(
-                  onTap: () {
-                    if (_usernameCtrl.text.isEmpty ||
-                        _emailCtrl.text.isEmpty ||
-                        _passwordCtrl.text.isEmpty ||
-                        _confirmCtrl.text.isEmpty) {
-                      _showToast();
-                      return;
-                    }
-                  },
+                  onTap: () async {
+  await _playClick();
+
+  if (_usernameCtrl.text.isEmpty ||
+      _emailCtrl.text.isEmpty ||
+      _passwordCtrl.text.isEmpty ||
+      _confirmCtrl.text.isEmpty) {
+    _showToast();
+    return;
+  }
+
+  if (_passwordCtrl.text != _confirmCtrl.text) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Password tidak sama")),
+    );
+    return;
+  }
+
+  final msg = await AuthService().register(
+    _emailCtrl.text,
+    _passwordCtrl.text,
+    _usernameCtrl.text,
+  );
+
+  if (msg == null) {
+    Navigator.pop(context); // balik ke login
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(msg)),
+    );
+  }
+},
+
                   child: Container(
                     width: 170,
                     height: 46,

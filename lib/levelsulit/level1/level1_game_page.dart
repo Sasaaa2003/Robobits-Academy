@@ -146,7 +146,7 @@ class _SulitLevel1GamePageState
         children: [
           /// ===== BG =====
           Image.asset(
-            "assets/bg_chips.jpg",
+            "assets/bg_chips.png",
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
@@ -325,7 +325,9 @@ class _SulitLevel1GamePageState
           const SizedBox(width: 12),
           const Expanded(
             child: Text(
-              "Tarik kabel ke soket\nsesuai WARNA!",
+              
+              "RoboBits harus menghubungkan soket yang saling sesuai agar aliran energi kembali normal. \n "
+              "Hubungkan soket yang sesuai warna !",
               style: TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w700,

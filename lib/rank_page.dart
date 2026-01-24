@@ -3,6 +3,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'home_page.dart';
 import 'settings_page.dart';
 
+
 class RankPage extends StatefulWidget {
   const RankPage({super.key});
 

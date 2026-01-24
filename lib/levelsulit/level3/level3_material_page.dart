@@ -86,7 +86,7 @@ class _SulitLevel3SulitMaterialPageState
         children: [
           /// ===== BACKGROUND =====
           Image.asset(
-            "assets/bg_chips.jpg",
+            "assets/bg_chips.png",
             width: double.infinity,
             height: double.infinity,
             fit: BoxFit.cover,
@@ -194,14 +194,9 @@ class _SulitLevel3SulitMaterialPageState
                         isRepeatingAnimation: false,
                         animatedTexts: [
                           TypewriterAnimatedText(
-                            "Pada level ini kita membahas\n"
-                            "perangkat OUTPUT.\n\n"
-                            "Monitor digunakan untuk\n"
-                            "menampilkan hasil proses\n"
-                            "dari komputer.\n\n"
-                            "Printer berfungsi untuk\n"
-                            "mencetak data menjadi\n"
-                            "bentuk fisik.",
+                            "Algoritma mengajarkan bahwa setiap proses memiliki urutan yang tepat.\nMengurutkan warna melatih RoboBits memahami prioritas dan langkah berurutan.\nSatu kesalahan urutan dapat mengulang seluruh proses."
+                            "Mengurutkan warna melatih RoboBits memahami prioritas dan langkah berurutan.\nSatu kesalahan urutan dapat mengulang seluruh proses."
+                            "Satu kesalahan urutan dapat mengulang seluruh proses.",
                             speed:
                                 const Duration(milliseconds: 35),
                             cursor: "|",
@@ -219,13 +214,6 @@ class _SulitLevel3SulitMaterialPageState
 
                     const SizedBox(height: 28),
 
-                    /// ===== IMAGE MATERI =====
-                    Image.asset(
-                      "assets/monitor_printer.png",
-                      height: 180,
-                    ),
-
-                    const SizedBox(height: 20),
                   ],
                 ),
               ),

@@ -188,8 +188,7 @@ class _Level3MaterialPageState extends State<Level3MaterialPage>
                             "Di level ini, kamu tidak hanya menghitung.\n\n"
                             "Kamu harus memikirkan arah dan urutan "
                             "langkah robot dengan benar.\n\n"
-                            "Perhatikan posisi awal, tujuan, "
-                            "dan rintangan sebelum memilih perintah.",
+                            "Kesalahan satu langkah dapat membuat sistem berhenti.",
                             speed: const Duration(milliseconds: 40),
                             cursor: "|",
                             textAlign: TextAlign.center,
