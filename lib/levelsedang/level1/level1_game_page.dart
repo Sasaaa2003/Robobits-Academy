@@ -298,7 +298,7 @@ class _SedangLevel1GamePageState extends State<SedangLevel1GamePage> {
                                   "RoboBits harus mengenali bentuk yang sesuai dengan pola yang diminta."
                                   "Pilih 3 bentuk\nuntuk membentuk rumah!",
                                   style: TextStyle(
-                                      fontSize: 13,
+                                      fontSize: 10,
                                       fontWeight: FontWeight.w700),
                                 ),
                               ),

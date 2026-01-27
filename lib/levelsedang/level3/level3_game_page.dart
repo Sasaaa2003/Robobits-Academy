@@ -229,7 +229,7 @@ class _SedangLevel3GamePageState extends State<SedangLevel3GamePage> {
                               "ke paling pendek dengan\n"
                               "cara drag & drop!",
                               style: TextStyle(
-                                fontSize: 13,
+                                fontSize: 10,
                                 fontWeight: FontWeight.w700,
                                 height: 1.3,
                               ),

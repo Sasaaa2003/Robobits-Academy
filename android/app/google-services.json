@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "296401790469",
+    "project_id": "robobits-4118c",
+    "storage_bucket": "robobits-4118c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296401790469:android:229a646d30bfed776b5e6c",
+        "android_client_info": {
+          "package_name": "com.example.robobits"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMrA48QfAVO-zkQXFYnTCGHF96JOIkIgM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

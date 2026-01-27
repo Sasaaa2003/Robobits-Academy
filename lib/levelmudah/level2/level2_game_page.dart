@@ -230,7 +230,7 @@ class _Level2GamePageState extends State<Level2GamePage> {
                                   "Sistem meminta jumlah yang tepat untuk sinkronisasi.\n\n"
                                   "Tugasmu:\nHitung berapa jumlah monitor!",
                                   style: TextStyle(
-                                    fontSize: 13,
+                                    fontSize: 10,
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),

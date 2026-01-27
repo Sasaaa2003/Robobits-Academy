@@ -40,6 +40,63 @@ class _LoginPageState extends State<LoginPage>
       AssetSource('Audios/click.wav'),
     );
   }
+void _showLoginError() {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (_) => Dialog(
+      backgroundColor: Colors.transparent,
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(22),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.25),
+              blurRadius: 15,
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // 🔹 GANTI ICON JADI IMAGE
+            Image.asset(
+              "assets/cemas.png",
+              height: 80,
+            ),
+
+            const SizedBox(height: 12),
+
+            const Text(
+              "Salah email / password !",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+
+            const SizedBox(height: 16),
+
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF2D76EA),
+                foregroundColor: Colors.white, // 🔹 text putih
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                ),
+              ),
+              onPressed: () => Navigator.pop(context),
+              child: const Text("Coba Lagi"),
+            )
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
 
   @override
   void initState() {
@@ -227,24 +284,22 @@ class _LoginPageState extends State<LoginPage>
     );
 
     if (user != null) {
-      final username = await AuthService().getUsername();
+  final username = await AuthService().getUsername();
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (_) => HomePage(username: username),
-        ),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Login gagal")),
-      );
-    }
-  } catch (e) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Login error: $e")),
-    );
-  }
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+      builder: (_) => HomePage(username: username),
+    ),
+  );
+} else {
+  _showLoginError();
+}
+
+  }catch (e) {
+  _showLoginError();
+}
+
 },
 
 

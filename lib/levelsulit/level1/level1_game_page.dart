@@ -329,7 +329,7 @@ class _SulitLevel1GamePageState
               "RoboBits harus menghubungkan soket yang saling sesuai agar aliran energi kembali normal. \n "
               "Hubungkan soket yang sesuai warna !",
               style: TextStyle(
-                fontSize: 13,
+                fontSize: 10,
                 fontWeight: FontWeight.w700,
               ),
             ),

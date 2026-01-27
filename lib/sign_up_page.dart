@@ -44,9 +44,64 @@ class _SignUpPageState extends State<SignUpPage>
   late AnimationController _titleCtrl;
   late Animation<double> _titleOpacity;
   late Animation<Offset> _titleSlide;
+void _showErrorDialog(String message) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (_) => Dialog(
+      backgroundColor: Colors.transparent,
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(22),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.25),
+              blurRadius: 15,
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              "assets/cemas.png", // sama kaya login
+              height: 60,
+            ),
+            const SizedBox(height: 12),
+            Text(
+              message,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+              ),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF2D76EA),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                ),
+              ),
+              onPressed: () => Navigator.pop(context),
+              child: const Text(
+                "Coba Lagi",
+                style: TextStyle(color: Colors.white),
+              ),
+            )
+          ],
+        ),
+      ),
+    ),
+  );
+}
 
   @override
   void initState() {
+
     super.initState();
 
     _floatCtrl =
@@ -196,19 +251,18 @@ class _SignUpPageState extends State<SignUpPage>
   await _playClick();
 
   if (_usernameCtrl.text.isEmpty ||
-      _emailCtrl.text.isEmpty ||
-      _passwordCtrl.text.isEmpty ||
-      _confirmCtrl.text.isEmpty) {
-    _showToast();
-    return;
-  }
+    _emailCtrl.text.isEmpty ||
+    _passwordCtrl.text.isEmpty ||
+    _confirmCtrl.text.isEmpty) {
+  _showErrorDialog("Lengkapi dulu yaa ");
+  return;
+}
 
-  if (_passwordCtrl.text != _confirmCtrl.text) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("Password tidak sama")),
-    );
-    return;
-  }
+if (_passwordCtrl.text != _confirmCtrl.text) {
+  _showErrorDialog("Password belum sama ");
+  return;
+}
+
 
   final msg = await AuthService().register(
     _emailCtrl.text,
@@ -217,12 +271,11 @@ class _SignUpPageState extends State<SignUpPage>
   );
 
   if (msg == null) {
-    Navigator.pop(context); // balik ke login
-  } else {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(msg)),
-    );
-  }
+  Navigator.pop(context); // sukses
+} else {
+  _showErrorDialog(msg);
+}
+
 },
 
                   child: Container(

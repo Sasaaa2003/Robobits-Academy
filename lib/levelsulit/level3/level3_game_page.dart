@@ -212,7 +212,7 @@ class _SulitLevel3GamePageState extends State<SulitLevel3GamePage> {
             child: Text(
               "lampu yang mengacaukan alur kerja."
               "\nRoboBits harus menyusunnya kembali agar lampu dapat menyala.",
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700),
+              style: TextStyle(fontSize: 10, fontWeight: FontWeight.w700),
             ),
           ),
         ],

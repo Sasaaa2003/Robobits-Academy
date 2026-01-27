@@ -153,44 +153,108 @@ class _LevelSulitPageState extends State<LevelSulitPage>
                           final unlocked = index < 3;
 
                           return GestureDetector(
-                            onTap: unlocked
-    ? () async {
-        await _sfxPlayer.play(
-          AssetSource('Audios/click.wav'),
-        );
+                           onTap: () async {
+  await _sfxPlayer.play(
+    AssetSource('Audios/click.wav'),
+  );
 
-        stopBgm();
+  if (!unlocked) {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (_) => Dialog(
+        backgroundColor: Colors.transparent,
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: const Color(0xFF5C1E00),
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.4),
+                blurRadius: 15,
+                offset: const Offset(0, 6),
+              )
+            ],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                "assets/Robot.png",
+                height: 90,
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                "COMING SOON!",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                "Level ini masih terkunci.\n",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 12,
+                ),
+              ),
+              const SizedBox(height: 14),
+              GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 10, horizontal: 30),
+                  decoration: BoxDecoration(
+                    color: Colors.orange,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: const Text(
+                    "OK",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    return;
+  }
 
-        if (index == 0) {
-          // ===== LEVEL 1 SULIT =====
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) =>
-                  const SulitLevel1SulitIntroPage(),
-            ),
-          );
-        } else if (index == 1) {
-          // ===== LEVEL 2 SULIT =====
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) =>
-                  const SulitLevel2SulitIntroPage(),
-            ),
-          );
-        } else if (index == 2) {
-          // ===== LEVEL 3 SULIT =====
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) =>
-                  const SulitLevel3SulitIntroPage(),
-            ),
-          );
-        }
-      }
-    : null,
+  stopBgm();
+
+  if (index == 0) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const SulitLevel1SulitIntroPage(),
+      ),
+    );
+  } else if (index == 1) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const SulitLevel2SulitIntroPage(),
+      ),
+    );
+  } else if (index == 2) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const SulitLevel3SulitIntroPage(),
+      ),
+    );
+  }
+},
+
 
 
                             child: Column(

@@ -212,7 +212,7 @@ class _Level3GamePageState extends State<Level3GamePage> {
                                 "menuju bengkel dengan mengikuti\n"
                                 "arah panah.",
                                 style: TextStyle(
-                                  fontSize: 13,
+                                  fontSize: 10,
                                   fontWeight: FontWeight.w700,
                                   height: 1.3,
                                 ),

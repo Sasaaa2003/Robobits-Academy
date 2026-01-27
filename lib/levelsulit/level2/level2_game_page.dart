@@ -181,7 +181,7 @@ class _SulitLevel2GamePageState extends State<SulitLevel2GamePage> {
             child: Text(
               "Deretan angka muncul, tetapi beberapa bagian hilang.\nSistem menunggu angka yang tepat untuk melanjutkan proses."
               "Lengkapi angka pada sarang lebah!",
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700),
+              style: TextStyle(fontSize: 10, fontWeight: FontWeight.w700),
             ),
           ),
         ],

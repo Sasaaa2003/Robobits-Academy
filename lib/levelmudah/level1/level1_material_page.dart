@@ -182,44 +182,59 @@ void initState() {
                     const SizedBox(height: 16),
 
                     // ===== TEXT (TINGGI TERKUNCI) =====
-                    Container(
-                      height: 120,
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      alignment: Alignment.topCenter,
-                      child: AnimatedTextKit(
-                        isRepeatingAnimation: false,
-                        animatedTexts: [
-                          TypewriterAnimatedText(
-                            "Halo, adik-adik!\n"
-                            "Ini namanya monitor.\n"
-                            "Di Lembah Compile,semua informasi ditampilkan "
-                            "melalui monitor.\n"
-                            "Dengan monitor, kita bisa melihat "
-                            "apa yang sedang dikerjakan komputer.",
-                            speed:
-                                const Duration(milliseconds: 40),
-                            cursor: "|",
-                            textAlign: TextAlign.center,
-                            textStyle: const TextStyle(
-                              fontSize: 13,
-                              height: 1.6,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black87,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    Expanded(
+  child: Stack(
+    alignment: Alignment.bottomCenter,
+    children: [
+      // ===== TEKS DI ATAS =====
+      Column(
+        children: [
+          const SizedBox(height: 16),
 
-                    const SizedBox(height: 30),
+          // ===== TEXT (TINGGI TERKUNCI) =====
+          Container(
+            height: 160,
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            alignment: Alignment.topCenter,
+            child: AnimatedTextKit(
+              isRepeatingAnimation: false,
+              animatedTexts: [
+                TypewriterAnimatedText(
+                  "Halo, adik-adik!\n"
+                  "Ini namanya monitor.\n"
+                  "Di Lembah Compile,semua informasi ditampilkan "
+                  "melalui monitor.\n"
+                  "Dengan monitor, kita bisa melihat "
+                  "apa yang sedang dikerjakan komputer.",
+                  speed: const Duration(milliseconds: 40),
+                  cursor: "|",
+                  textAlign: TextAlign.center,
+                  textStyle: const TextStyle(
+                    fontSize: 13,
+                    height: 1.6,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black87,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
 
-                    // ===== MONITOR (DIAM) =====
-                    Image.asset(
-                      "assets/monitor.png",
-                      height: 180,
-                    ),
+      // ===== MONITOR DI BAWAH =====
+      Positioned(
+        bottom: 150, // bisa kamu kecilkan / besarkan
+        child: Image.asset(
+          "assets/monitor.png",
+          height: 180,
+        ),
+      ),
+    ],
+  ),
+),
 
-                    const SizedBox(height: 20),
+                
                   ],
                 ),
               ),

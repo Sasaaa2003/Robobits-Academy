@@ -138,7 +138,7 @@ class _SedangLevel2GamePageState extends State<SedangLevel2GamePage> {
                             "Beberapa bentuk rumah tampil bersamaan.\n"
                             "Sistem meminta jumlah bentuk tertentu untuk verifikasi.",
                             style: TextStyle(
-                                fontSize: 12, fontWeight: FontWeight.bold),
+                                fontSize: 10, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ],

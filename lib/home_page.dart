@@ -7,10 +7,13 @@ import 'level_mudah_page.dart';
 import 'level_sedang_page.dart';
 import 'level_sulit_page.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 class HomePage extends StatefulWidget {
   final String username;
-
   const HomePage({super.key, required this.username});
+
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -61,6 +64,14 @@ class _HomePageState extends State<HomePage>
       'difficulty': 'Sulit',
     },
   ];
+
+  final _user = FirebaseAuth.instance.currentUser!;
+final _db = FirebaseFirestore.instance;
+
+late String username;
+bool musicOn = true;
+bool soundOn = true;
+
 
   List<Map<String, dynamic>> get filteredLevels {
     if (_selectedCategory == "Semua") return levels;
@@ -116,6 +127,23 @@ class _HomePageState extends State<HomePage>
     _floatAnimations.clear();
     _isHovered.clear();
   }
+@override
+void initState() {
+  super.initState();
+  username = widget.username;
+  _loadSettings();
+}
+
+Future<void> _loadSettings() async {
+  final snap = await _db.collection("users").doc(_user.uid).get();
+  if (snap.exists) {
+    setState(() {
+      musicOn = snap["music"] ?? true;
+      soundOn = snap["sound"] ?? true;
+      username = snap["username"] ?? username;
+    });
+  }
+}
 
   @override
   void dispose() {
@@ -203,32 +231,44 @@ class _HomePageState extends State<HomePage>
       onTap: () async {
         try {
           await _player.stop();
-          await _player.play(AssetSource('Audios/click.wav'));
+          if (soundOn) {
+  await _player.stop();
+  await _player.play(AssetSource('Audios/click.wav'));
+}
+
         } catch (_) {}
         setState(() => _navIndex = index);
         if (index == 0) {
-        // RANK PAGE
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const RankPage()),
-        );
-      } 
-      else if (index == 1) {
-        // HOME PAGE
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (_) => const HomePage(username: "Albert03"),
-          ),
-        );
-      } 
-      else if (index == 2) {
-        // SETTINGS PAGE
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const SettingsPage()),
-        );
-      }
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+      builder: (_) => RankPage(username: widget.username),
+    ),
+  );
+} 
+
+else if (index == 1) {
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+      builder: (_) => HomePage(username: widget.username),
+    ),
+  );
+}
+
+else if (index == 2) {
+  final newName = await Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (_) => SettingsPage(username: username),
+    ),
+  );
+
+  if (newName != null) {
+    setState(() => username = newName);
+  }
+}
+
     },
       child: SizedBox(
         width: 60,

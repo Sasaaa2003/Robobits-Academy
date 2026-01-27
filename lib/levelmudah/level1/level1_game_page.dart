@@ -223,9 +223,9 @@ Future<void> _playWrongSound() async {
                               const Expanded(
                                 child: Text(
                                   "RoboBits harus memilih mana yang benar agar data bisa dibaca.\n"
-                                  "Tugasmu:\nTemukan monitor di antara gambar-gambar ini!",
+                                  "Temukan monitor di antara gambar-gambar ini!",
                                   style: TextStyle(
-                                    fontSize: 13,
+                                    fontSize: 10,
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
