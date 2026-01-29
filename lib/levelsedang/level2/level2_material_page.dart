@@ -3,7 +3,8 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'level2_game_page.dart';
 
 class SedangLevel2MaterialPage extends StatefulWidget {
-  const SedangLevel2MaterialPage({super.key});
+  final String username;
+  const SedangLevel2MaterialPage({super.key, required this.username});
 
   @override
   State<SedangLevel2MaterialPage> createState() =>
@@ -36,7 +37,7 @@ class _SedangLevel2MaterialPageState extends State<SedangLevel2MaterialPage>
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => const SedangLevel2GamePage(), // ✅ DENGAN const
+          builder: (_) => SedangLevel2GamePage(username: widget.username),
         ),
       );
     });
@@ -198,7 +199,7 @@ class _SedangLevel2MaterialPageState extends State<SedangLevel2MaterialPage>
                         animatedTexts: [
                           TypewriterAnimatedText(
                             "Sekarang kita masuk ke tantangan matematika.\n\n"
-                            "Hitung setiap soal dengan teliti dan cepat.\n\n"
+                            "Hitung setiap soal dengan teliti dan cepat.\n"
                             "Gunakan logika dan perhitungan yang tepat "
                             "untuk mendapatkan energi maksimal.",
                             speed: const Duration(milliseconds: 40),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'home_page.dart';
 
 import 'levelsulit/level1/level1_intro_page.dart';
 import 'levelsulit/level2/level2_intro_page.dart';
@@ -9,7 +10,8 @@ import 'levelsulit/level3/level3_intro_page.dart';
 
 
 class LevelSulitPage extends StatefulWidget {
-  const LevelSulitPage({super.key});
+  final String username;
+  const LevelSulitPage({super.key, required this.username});
 
   @override
   State<LevelSulitPage> createState() => _LevelSulitPageState();
@@ -147,7 +149,7 @@ class _LevelSulitPageState extends State<LevelSulitPage>
                           crossAxisCount: 3,
                           mainAxisSpacing: 10,
                           crossAxisSpacing: 10,
-                          childAspectRatio: 0.72,
+                          childAspectRatio: 0.8,
                         ),
                         itemBuilder: (context, index) {
                           final unlocked = index < 3;
@@ -235,21 +237,21 @@ class _LevelSulitPageState extends State<LevelSulitPage>
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => const SulitLevel1SulitIntroPage(),
+        builder: (_) => SulitLevel1SulitIntroPage(username: widget.username),
       ),
     );
   } else if (index == 1) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => const SulitLevel2SulitIntroPage(),
+        builder: (_) => SulitLevel2SulitIntroPage(username: widget.username),
       ),
     );
   } else if (index == 2) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => const SulitLevel3SulitIntroPage(),
+        builder: (_) => SulitLevel3SulitIntroPage(username: widget.username),
       ),
     );
   }
@@ -292,19 +294,26 @@ class _LevelSulitPageState extends State<LevelSulitPage>
                                 const SizedBox(height: 4),
 
                                 if (unlocked)
-                                  Text(
-                                    index == 0
-                                        ? "Logika"
-                                        : index == 1
-                                            ? "Matematika"
-                                            : "Algoritma",
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 10,
-                                      fontWeight:
-                                          FontWeight.bold,
-                                    ),
-                                  ),
+                                  SizedBox(
+  width: 70,
+  child: FittedBox(
+    fit: BoxFit.scaleDown,
+    child: Text(
+      index == 0
+          ? "Logika"
+          : index == 1
+              ? "Matematika"
+              : "Algoritma",
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: const TextStyle(
+        color: Colors.white,
+        fontSize: 11,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+  ),
+),
 
                                 const SizedBox(height: 4),
 
@@ -332,21 +341,26 @@ class _LevelSulitPageState extends State<LevelSulitPage>
 
                   // ===== BACK BUTTON =====
                   Align(
-                    alignment: Alignment.centerLeft,
-                    child: GestureDetector(
-                      onTap: () async {
-                        await _sfxPlayer.play(
-                          AssetSource('Audios/click.wav'),
-                        );
-                        stopBgm();
-                        Navigator.pop(context);
-                      },
-                      child: Image.asset(
-                        "assets/btn back.png",
-                        width: 50,
-                      ),
-                    ),
-                  ),
+  alignment: Alignment.centerLeft,
+  child: GestureDetector(
+    onTap: () async {
+      await _sfxPlayer.play(AssetSource('Audios/click.wav'));
+      stopBgm();
+
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (_) => HomePage(username: widget.username),
+        ),
+        (route) => false,
+      );
+    },
+    child: Image.asset(
+      "assets/btn back.png",
+      width: 50,
+    ),
+  ),
+),
                 ],
               ),
             ),

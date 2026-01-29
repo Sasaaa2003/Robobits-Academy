@@ -5,7 +5,12 @@ import 'package:robobits/level_mudah_page.dart';
 import 'level3_result_dialog.dart';
 
 class Level3GamePage extends StatefulWidget {
-  const Level3GamePage({super.key});
+  final String username;
+
+  const Level3GamePage({
+    super.key,
+    required this.username,
+  });
 
   @override
   State<Level3GamePage> createState() => _Level3GamePageState();
@@ -57,7 +62,7 @@ class _Level3GamePageState extends State<Level3GamePage> {
         showDialog(
           context: context,
           barrierDismissible: false,
-          builder: (_) => const Level3ResultDialog(score: 300),
+          builder: (_) => Level3ResultDialog(score: 300, username: widget.username),
         );
       });
     }
@@ -300,7 +305,7 @@ class _Level3GamePageState extends State<Level3GamePage> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const LevelMudahPage(),
+                    builder: (_) => LevelMudahPage(username: widget.username),
                   ),
                 );
               },

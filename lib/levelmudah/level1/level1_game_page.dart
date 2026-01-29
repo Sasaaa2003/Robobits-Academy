@@ -5,7 +5,12 @@ import 'package:robobits/level_mudah_page.dart';
 import 'package:robobits/audio/level1_bgm.dart';
 
 class Level1GamePage extends StatefulWidget {
-  const Level1GamePage({super.key});
+  final String username;
+
+  const Level1GamePage({
+    super.key,
+    required this.username,
+  });
 
   @override
   State<Level1GamePage> createState() => _Level1GamePageState();
@@ -57,7 +62,11 @@ class _Level1GamePageState extends State<Level1GamePage> {
         showDialog(
           context: context,
           barrierDismissible: false,
-          builder: (_) => const Level1ResultDialog(score: 300),
+          builder: (_) => Level1ResultDialog(
+  score: 300,
+  username: widget.username,
+),
+
         );
       });
     }
@@ -239,8 +248,7 @@ Future<void> _playWrongSound() async {
                         Expanded(
                           child: GridView.builder(
                             padding: const EdgeInsets.all(12),
-                            physics:
-                                const NeverScrollableScrollPhysics(),
+                            physics: const BouncingScrollPhysics(),
                             itemCount: items.length,
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
@@ -297,7 +305,8 @@ Future<void> _playWrongSound() async {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const LevelMudahPage(),
+                    builder: (_) => LevelMudahPage(username: widget.username),
+
                   ),
                 );
               },

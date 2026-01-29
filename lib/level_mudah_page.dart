@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'home_page.dart';
 
 // ===== LEVEL INTRO =====
 import 'levelmudah/level1/level1_intro_page.dart';
@@ -8,7 +9,9 @@ import 'levelmudah/level2/level2_intro_page.dart';
 import 'levelmudah/level3/level3_intro_page.dart';
 
 class LevelMudahPage extends StatefulWidget {
-  const LevelMudahPage({super.key});
+  final String username;
+  const LevelMudahPage({super.key, required this.username});
+
 
   @override
   State<LevelMudahPage> createState() => _LevelMudahPageState();
@@ -238,21 +241,21 @@ class _LevelMudahPageState extends State<LevelMudahPage>
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => const Level1IntroPage(),
+        builder: (_) => Level1IntroPage(username: widget.username),
       ),
     );
   } else if (index == 1) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => const Level2IntroPage(),
+        builder: (_) => Level2IntroPage(username: widget.username),
       ),
     );
   } else if (index == 2) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => const Level3IntroPage(),
+        builder: (_) => Level3IntroPage(username: widget.username),
       ),
     );
   }
@@ -333,21 +336,27 @@ class _LevelMudahPageState extends State<LevelMudahPage>
 
                   // ===== BACK BUTTON =====
                   Align(
-                    alignment: Alignment.centerLeft,
-                    child: GestureDetector(
-                      onTap: () async {
-                        await _sfxPlayer.play(
-                          AssetSource('Audios/click.wav'),
-                        );
-                        stopBgm();
-                        Navigator.pop(context);
-                      },
-                      child: Image.asset(
-                        "assets/btn back.png",
-                        width: 50,
-                      ),
-                    ),
-                  ),
+  alignment: Alignment.centerLeft,
+  child: GestureDetector(
+    onTap: () async {
+      await _sfxPlayer.play(AssetSource('Audios/click.wav'));
+      stopBgm();
+
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (_) => HomePage(username: widget.username),
+        ),
+        (route) => false,
+      );
+    },
+    child: Image.asset(
+      "assets/btn back.png",
+      width: 50,
+    ),
+  ),
+),
+
                 ],
               ),
             ),

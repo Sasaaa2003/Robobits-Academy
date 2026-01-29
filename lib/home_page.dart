@@ -487,24 +487,25 @@ else if (index == 2) {
                                       } catch (_) {}
                                       if (item['difficulty'] == "Mudah") {
                                         Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) =>
-                                                  const LevelMudahPage()),
-                                        );
+  context,
+  MaterialPageRoute(
+    builder: (_) => LevelMudahPage(username: username),
+  ),
+);
+
                                       } if(item['difficulty'] == "Sedang") {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (_) =>
-                                                  const LevelSedangPage()),
+                                                  LevelSedangPage(username: username)),
                                         );
                                       } if (item['difficulty'] == "Sulit") {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (_) =>
-                                                  const LevelSulitPage()),
+                                                  LevelSulitPage(username: username)),
                                         );
                                       }
                                     },

@@ -22,7 +22,8 @@ class ShapeQuestion {
 }
 
 class SedangLevel2GamePage extends StatefulWidget {
-  const SedangLevel2GamePage({super.key});
+  final String username;
+  const SedangLevel2GamePage({super.key, required this.username});
 
   @override
   State<SedangLevel2GamePage> createState() => _SedangLevel2GamePageState();
@@ -90,7 +91,7 @@ class _SedangLevel2GamePageState extends State<SedangLevel2GamePage> {
         showDialog(
           context: context,
           barrierDismissible: false,
-          builder: (_) => const SedangLevel2ResultDialog(score: 300),
+          builder: (_) => SedangLevel2ResultDialog(score: 300, username: widget.username),
         );
       }
     } else {
@@ -123,42 +124,58 @@ class _SedangLevel2GamePageState extends State<SedangLevel2GamePage> {
                   borderRadius: BorderRadius.circular(32),
                 ),
                 child: Column(
-                  children: [
-                    const SizedBox(height: 10),
-                    _topBar(),
-                    const SizedBox(height: 18),
+  children: [
+    const SizedBox(height: 10),
+    _topBar(),
+    const SizedBox(height: 18),
 
-                    Row(
-                      children: [
-                        const SizedBox(width: 20),
-                        Image.asset(robotAsset, height: 80),
-                        const SizedBox(width: 12),
-                        const Expanded(
-                          child: Text(
-                            "Beberapa bentuk rumah tampil bersamaan.\n"
-                            "Sistem meminta jumlah bentuk tertentu untuk verifikasi.",
-                            style: TextStyle(
-                                fontSize: 10, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ],
-                    ),
+    // ===== HEADER (TETAP) =====
+    Row(
+      children: [
+        const SizedBox(width: 20),
+        Image.asset(robotAsset, height: 80),
+        const SizedBox(width: 12),
+        const Expanded(
+          child: Text(
+            "Beberapa bentuk rumah tampil bersamaan.\n"
+            "Sistem meminta jumlah bentuk tertentu untuk verifikasi.",
+            style: TextStyle(
+              fontSize: 10,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ],
+    ),
 
-                    const SizedBox(height: 16),
-                    _shapeBoard(),
-                    const SizedBox(height: 12),
+    const SizedBox(height: 12),
 
-                    Expanded(
-                      child: Column(
-                        children: questions.map(_answerRow).toList(),
-                      ),
-                    ),
-                  ],
-                ),
+    // ===== AREA SCROLL =====
+    Expanded(
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            const SizedBox(height: 8),
+
+            // PAPAN BENTUK
+            _shapeBoard(),
+
+            const SizedBox(height: 12),
+
+            // JAWABAN
+            ...questions.map(_answerRow).toList(),
+
+            const SizedBox(height: 30),
+          ],
+        ),
+      ),
+    ),
+  ],
+),
               ),
             ),
           ),
-
           Positioned(
             left: 24,
             bottom: 24, 
@@ -168,7 +185,7 @@ class _SedangLevel2GamePageState extends State<SedangLevel2GamePage> {
                 await Level1Bgm.stop();
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (_) => const LevelSedangPage()),
+                  MaterialPageRoute(builder: (_) => LevelSedangPage(username: widget.username)),
                 );
               },
               child: Image.asset("assets/btn back.png", width: 50),
@@ -229,9 +246,10 @@ class _SedangLevel2GamePageState extends State<SedangLevel2GamePage> {
       );
 
   // ================= PAPAN =================
-  Widget _shapeBoard() => Container(
-        width: 260,
-        height: 220,
+  Widget _shapeBoard() => SizedBox(
+      width: 260,
+      height: 220,
+      child: Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
           color: const Color(0xFFE6E6E6),
@@ -242,9 +260,11 @@ class _SedangLevel2GamePageState extends State<SedangLevel2GamePage> {
           mainAxisSpacing: 10,
           crossAxisSpacing: 10,
           physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
           children: shapes.map(_buildShape).toList(),
         ),
-      );
+      ),
+    );
 
   // ================= JAWABAN =================
   Widget _answerRow(ShapeQuestion q) => Padding(

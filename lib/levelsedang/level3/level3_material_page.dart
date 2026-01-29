@@ -3,7 +3,8 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'level3_game_page.dart';
 
 class Level3SedangMaterialPage extends StatefulWidget {
-  const Level3SedangMaterialPage({super.key});
+  final String username;
+  const Level3SedangMaterialPage({super.key, required this.username});
 
   @override
   State<Level3SedangMaterialPage> createState() =>
@@ -36,7 +37,7 @@ class _Level3SedangMaterialPageState extends State<Level3SedangMaterialPage>
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => const SedangLevel3GamePage(),
+          builder: (_) => SedangLevel3GamePage(username: widget.username),
         ),
       );
     });

@@ -5,7 +5,12 @@ import 'package:robobits/level_mudah_page.dart';
 import 'package:robobits/audio/level1_bgm.dart';
 
 class Level2GamePage extends StatefulWidget {
-  const Level2GamePage({super.key});
+  final String username;
+
+  const Level2GamePage({
+    super.key,
+    required this.username,
+  });
 
   @override
   State<Level2GamePage> createState() => _Level2GamePageState();
@@ -59,7 +64,7 @@ class _Level2GamePageState extends State<Level2GamePage> {
         showDialog(
           context: context,
           barrierDismissible: false,
-          builder: (_) => const Level2ResultDialog(score: 300),
+          builder: (_) => Level2ResultDialog(score: 300, username: widget.username),
         );
       });
     } else {
@@ -242,28 +247,26 @@ class _Level2GamePageState extends State<Level2GamePage> {
                         const SizedBox(height: 16),
 
                         // ===== GRID GAMBAR =====
-                        Expanded(
-                          child: GridView.builder(
-                            padding: const EdgeInsets.all(12),
-                            physics:
-                                const NeverScrollableScrollPhysics(),
-                            itemCount: items.length,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3,
-                              mainAxisSpacing: 12,
-                              crossAxisSpacing: 12,
-                            ),
-                            itemBuilder: (context, index) {
-                              return Center(
-                                child: Image.asset(
-                                  items[index],
-                                  height: 70,
-                                ),
-                              );
-                            },
-                          ),
-                        ),
+                       Expanded(
+  child: GridView.builder(
+    padding: const EdgeInsets.all(12),
+    physics: const BouncingScrollPhysics(), // 👈 aktifkan scroll
+    itemCount: items.length,
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 3,
+      mainAxisSpacing: 12,
+      crossAxisSpacing: 12,
+    ),
+    itemBuilder: (context, index) {
+      return Center(
+        child: Image.asset(
+          items[index],
+          height: 70,
+        ),
+      );
+    },
+  ),
+),
 
                         const SizedBox(height: 8),
 
@@ -328,7 +331,7 @@ class _Level2GamePageState extends State<Level2GamePage> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const LevelMudahPage(),
+                    builder: (_) => LevelMudahPage(username: widget.username),
                   ),
                 );
               },

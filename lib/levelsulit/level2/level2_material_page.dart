@@ -3,7 +3,8 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'level2_game_page.dart';
 
 class SulitLevel2SulitMaterialPage extends StatefulWidget {
-  const SulitLevel2SulitMaterialPage({super.key});
+  final String username;
+  const SulitLevel2SulitMaterialPage({super.key, required this.username});
 
   @override
   State<SulitLevel2SulitMaterialPage> createState() =>
@@ -40,7 +41,7 @@ class _SulitLevel2SulitMaterialPageState
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => const SulitLevel2GamePage(),
+          builder: (_) => SulitLevel2GamePage(username: widget.username),
         ),
       );
     });

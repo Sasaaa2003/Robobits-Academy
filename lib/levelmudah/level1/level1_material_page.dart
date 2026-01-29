@@ -4,11 +4,17 @@ import 'level1_game_page.dart';
 
 
 class Level1MaterialPage extends StatefulWidget {
-  const Level1MaterialPage({super.key});
+  final String username;
+
+  const Level1MaterialPage({
+    super.key,
+    required this.username,
+  });
 
   @override
   State<Level1MaterialPage> createState() => _Level1MaterialPageState();
 }
+
 
 class _Level1MaterialPageState extends State<Level1MaterialPage>
     with SingleTickerProviderStateMixin {
@@ -36,7 +42,8 @@ void initState() {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (_) => const Level1GamePage(),
+        builder: (_) => Level1GamePage(username: widget.username),
+
       ),
     );
   });
@@ -191,34 +198,40 @@ void initState() {
         children: [
           const SizedBox(height: 16),
 
-          // ===== TEXT (TINGGI TERKUNCI) =====
-          Container(
-            height: 160,
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            alignment: Alignment.topCenter,
-            child: AnimatedTextKit(
-              isRepeatingAnimation: false,
-              animatedTexts: [
-                TypewriterAnimatedText(
-                  "Halo, adik-adik!\n"
-                  "Ini namanya monitor.\n"
-                  "Di Lembah Compile,semua informasi ditampilkan "
-                  "melalui monitor.\n"
-                  "Dengan monitor, kita bisa melihat "
-                  "apa yang sedang dikerjakan komputer.",
-                  speed: const Duration(milliseconds: 40),
-                  cursor: "|",
-                  textAlign: TextAlign.center,
-                  textStyle: const TextStyle(
-                    fontSize: 13,
-                    height: 1.6,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black87,
-                  ),
-                ),
-              ],
+         // ===== TEXT (TINGGI TERKUNCI + SAFE SPACE) =====
+Container(
+  height: 200, // NAIKKAN dikit
+  padding: const EdgeInsets.symmetric(horizontal: 24),
+  alignment: Alignment.topCenter,
+  child: Column(
+    children: [
+      AnimatedTextKit(
+        isRepeatingAnimation: false,
+        animatedTexts: [
+          TypewriterAnimatedText(
+            "Halo, adik-adik!\n"
+            "Yang kalian liat dibawah adalah monitor.\n\n"
+            "Di Lembah Compile, semua informasi "
+            "ditampilkan melalui monitor.\n\n"
+            "Dengan monitor, kita bisa melihat "
+            "apa yang sedang dikerjakan komputer.",
+            speed: const Duration(milliseconds: 40),
+            cursor: "|",
+            textAlign: TextAlign.center,
+            textStyle: const TextStyle(
+              fontSize: 13,
+              height: 1.6,
+              fontWeight: FontWeight.w600,
+              color: Colors.black87,
             ),
           ),
+        ],
+      ),
+
+      const SizedBox(height: 30), // 👈 RUANG AMAN biar gak ketabrak monitor
+    ],
+  ),
+),
         ],
       ),
 

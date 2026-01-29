@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'home_page.dart';
 
 
 // ===== LEVEL SEDANG INTRO =====
@@ -11,7 +12,9 @@ import 'levelsedang/level3/level3_intro_page.dart';
 
 
 class LevelSedangPage extends StatefulWidget {
-  const LevelSedangPage({super.key});
+  final String username;
+  const LevelSedangPage({super.key, required this.username});
+
 
   @override
   State<LevelSedangPage> createState() => _LevelSedangPageState();
@@ -238,21 +241,21 @@ class _LevelSedangPageState extends State<LevelSedangPage>
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => const SedangLevel1IntroPage(),
+        builder: (_) => SedangLevel1IntroPage(username: widget.username),
       ),
     );
   } else if (index == 1) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => const SedangLevel2IntroPage(),
+        builder: (_) => SedangLevel2IntroPage(username: widget.username),
       ),
     );
   } else if (index == 2) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => const SedangLevel3SedangIntroPage(),
+        builder: (_) => SedangLevel3SedangIntroPage(username: widget.username),
       ),
     );
   }
@@ -339,21 +342,28 @@ class _LevelSedangPageState extends State<LevelSedangPage>
 
                   // ===== BACK BUTTON =====
                   Align(
-                    alignment: Alignment.centerLeft,
-                    child: GestureDetector(
-                      onTap: () async {
-                        await _sfxPlayer.play(
-                          AssetSource('Audios/click.wav'),
-                        );
-                        _bgPlayer.stop();
-                        Navigator.pop(context);
-                      },
-                      child: Image.asset(
-                        "assets/btn back.png",
-                        width: 50,
-                      ),
-                    ),
-                  ),
+  alignment: Alignment.centerLeft,
+  child: GestureDetector(
+    onTap: () async {
+  await _sfxPlayer.play(AssetSource('Audios/click.wav'));
+
+  await _bgPlayer.stop(); // hentikan BGM Level Sedang
+
+  Navigator.pushAndRemoveUntil(
+    context,
+    MaterialPageRoute(
+      builder: (_) => HomePage(username: widget.username),
+    ),
+    (route) => false,
+  );
+},
+
+    child: Image.asset(
+      "assets/btn back.png",
+      width: 50,
+    ),
+  ),
+),
                 ],
               ),
             ),

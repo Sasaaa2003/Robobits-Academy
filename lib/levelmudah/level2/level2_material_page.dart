@@ -3,7 +3,12 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'level2_game_page.dart';
 
 class Level2MaterialPage extends StatefulWidget {
-  const Level2MaterialPage({super.key});
+  final String username;
+
+  const Level2MaterialPage({
+    super.key,
+    required this.username,
+  });
 
   @override
   State<Level2MaterialPage> createState() => _Level2MaterialPageState();
@@ -29,13 +34,13 @@ class _Level2MaterialPageState extends State<Level2MaterialPage>
       CurvedAnimation(parent: _floatController, curve: Curves.easeInOut),
     );
 
-    // ===== AUTO PINDAH KE GAME LEVEL 2 =====
+    // ===== AUTO PINDAH KE GAME =====
     Future.delayed(const Duration(seconds: 15), () {
       if (!mounted) return;
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => const Level2GamePage(),
+          builder: (_) => Level2GamePage(username: widget.username),
         ),
       );
     });
@@ -63,11 +68,7 @@ class _Level2MaterialPageState extends State<Level2MaterialPage>
   }) {
     return GestureDetector(
       onTap: onTap,
-      child: Image.asset(
-        asset,
-        width: 36,
-        height: 36,
-      ),
+      child: Image.asset(asset, width: 36, height: 36),
     );
   }
 
@@ -108,7 +109,6 @@ class _Level2MaterialPageState extends State<Level2MaterialPage>
                               });
                             },
                           ),
-
                           const SizedBox(width: 8),
 
                           Expanded(
@@ -134,9 +134,9 @@ class _Level2MaterialPageState extends State<Level2MaterialPage>
                                     minHeight: 6,
                                     backgroundColor:
                                         Colors.white.withOpacity(0.3),
-                                    valueColor:
-                                        const AlwaysStoppedAnimation(
-                                            Colors.white),
+                                    valueColor: const AlwaysStoppedAnimation(
+                                      Colors.white,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -176,7 +176,7 @@ class _Level2MaterialPageState extends State<Level2MaterialPage>
 
                     const SizedBox(height: 16),
 
-                    // ===== TEXT MATERIAL LEVEL 2 =====
+                    // ===== TEXT MATERIAL =====
                     Container(
                       height: 150,
                       padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -185,9 +185,9 @@ class _Level2MaterialPageState extends State<Level2MaterialPage>
                         isRepeatingAnimation: false,
                         animatedTexts: [
                           TypewriterAnimatedText(
-                            "Setelah mengenali bentuk,\n "
+                            "Setelah mengenali bentuk,\n"
                             "sistem membutuhkan jumlah yang pasti.\n\n"
-                            "Matematika membantu RoboBits memastikan perhitungan akurat.\n "
+                            "Matematika membantu RoboBits memastikan perhitungan akurat.\n"
                             "Menghitung dengan benar penting agar sistem tidak salah memproses data.\n"
                             "Ayo, bantu RoboBits belajar menghitung!",
                             speed: const Duration(milliseconds: 40),
@@ -204,11 +204,9 @@ class _Level2MaterialPageState extends State<Level2MaterialPage>
                       ),
                     ),
 
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 10),
 
-                  
-                    
-
+                    // ===== AREA BAWAH (SCROLL SAJA) =====
                     
                   ],
                 ),

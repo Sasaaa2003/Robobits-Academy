@@ -3,7 +3,12 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'level3_game_page.dart';
 
 class Level3MaterialPage extends StatefulWidget {
-  const Level3MaterialPage({super.key});
+  final String username;
+
+  const Level3MaterialPage({
+    super.key,
+    required this.username,
+  });
 
   @override
   State<Level3MaterialPage> createState() => _Level3MaterialPageState();
@@ -35,7 +40,7 @@ class _Level3MaterialPageState extends State<Level3MaterialPage>
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => const Level3GamePage(),
+          builder: (_) => Level3GamePage(username: widget.username),
         ),
       );
     });

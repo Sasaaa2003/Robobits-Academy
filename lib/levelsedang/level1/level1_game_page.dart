@@ -6,7 +6,8 @@ import 'package:robobits/levelsedang/level1/level1_result_dialog.dart';
 import 'package:robobits/audio/level1_bgm.dart';
 
 class SedangLevel1GamePage extends StatefulWidget {
-  const SedangLevel1GamePage({super.key});
+  final String username;
+  const SedangLevel1GamePage({super.key, required this.username});
 
   @override
   State<SedangLevel1GamePage> createState() => _SedangLevel1GamePageState();
@@ -82,7 +83,7 @@ class _SedangLevel1GamePageState extends State<SedangLevel1GamePage> {
         showDialog(
           context: context,
           barrierDismissible: false,
-          builder: (_) => const SedangLevel1ResultDialog(score: 300),
+          builder: (_) => SedangLevel1ResultDialog(score: 300, username: widget.username),
         );
       });
     } else {
@@ -372,7 +373,7 @@ class _SedangLevel1GamePageState extends State<SedangLevel1GamePage> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const LevelSedangPage(),
+                    builder: (_) => LevelSedangPage(username: widget.username),
                   ),
                 );
               },

@@ -33,39 +33,41 @@ class _RankPageState extends State<RankPage> {
     _loadRanks();
   }
 
-  // ===== LOAD SETTINGS USER =====
+  // ================= LOAD SETTINGS =================
   Future<void> _loadSettings() async {
     final snap = await _db.collection("users").doc(_user.uid).get();
     if (snap.exists) {
       setState(() {
-        soundOn = snap["sound"] ?? true;
-        musicOn = snap["music"] ?? true;
-        username = snap["username"] ?? username;
+        soundOn = snap.data()?["sound"] ?? true;
+        musicOn = snap.data()?["music"] ?? true;
+        username = snap.data()?["username"] ?? username;
       });
     }
   }
 
-  // ===== LOAD RANK =====
+  // ================= LOAD RANK =================
   Future<void> _loadRanks() async {
     final snapshot = await _db
         .collection('users')
-        .orderBy('score', descending: true)
+        .orderBy('levelScore.totalScore', descending: true)
         .limit(20)
         .get();
 
     setState(() {
       ranks = snapshot.docs.map((doc) {
+        final data = doc.data();
         return {
           "uid": doc.id,
-          "name": doc['username'],
-          "score": doc['score'],
+          "name": data["username"] ?? "Player",
+          "score": data["levelScore"]?["totalScore"] ?? 0,
         };
       }).toList();
+
       _loading = false;
     });
   }
 
-  // ===== PLAY CLICK =====
+  // ================= PLAY CLICK =================
   Future<void> _playClick() async {
     if (!soundOn) return;
     try {
@@ -88,10 +90,12 @@ class _RankPageState extends State<RankPage> {
       extendBody: true,
       body: Stack(
         children: [
-          Image.asset("assets/bg2.png",
-              width: double.infinity,
-              height: double.infinity,
-              fit: BoxFit.cover),
+          Image.asset(
+            "assets/bg2.png",
+            width: double.infinity,
+            height: double.infinity,
+            fit: BoxFit.cover,
+          ),
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -147,7 +151,7 @@ class _RankPageState extends State<RankPage> {
         ],
       ),
 
-      // ===== NAVBAR =====
+      // ================= NAVBAR =================
       bottomNavigationBar: SizedBox(
         height: 90,
         child: Center(
@@ -213,13 +217,17 @@ class _RankPageState extends State<RankPage> {
 
   // ================= PODIUM =================
   Widget _podium() {
+    final first = ranks[0];
+    final second = ranks[1];
+    final third = ranks[2];
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _podiumItem(2, ranks[1], height: 100),
-        _podiumItem(1, ranks[0], height: 140, isFirst: true),
-        _podiumItem(3, ranks[2], height: 80),
+        _podiumItem(2, second, height: 100),
+        _podiumItem(1, first, height: 140, isFirst: true),
+        _podiumItem(3, third, height: 80),
       ],
     );
   }
@@ -238,9 +246,10 @@ class _RankPageState extends State<RankPage> {
           child: Image.asset("assets/rank_$rank.png"),
         ),
         const SizedBox(height: 6),
-        Text(data["name"],
-            style: const TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold)),
+        Text(
+          data["name"],
+          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         const SizedBox(height: 6),
         Container(
           width: 80,
@@ -255,9 +264,10 @@ class _RankPageState extends State<RankPage> {
                       : const [Color(0xFFD7A86E), Color(0xFF8D5A2B)],
             ),
           ),
-          child: Text(data["score"].toString(),
-              style:
-                  const TextStyle(fontSize: 16, fontWeight: FontWeight.w900)),
+          child: Text(
+            data["score"].toString(),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
+          ),
         ),
       ],
     );
@@ -288,11 +298,15 @@ class _RankPageState extends State<RankPage> {
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: Text(data["name"],
-                    style: const TextStyle(fontWeight: FontWeight.w600)),
+                child: Text(
+                  data["name"],
+                  style: const TextStyle(fontWeight: FontWeight.w600),
+                ),
               ),
-              Text(data["score"].toString(),
-                  style: const TextStyle(fontWeight: FontWeight.bold)),
+              Text(
+                data["score"].toString(),
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
             ],
           ),
         );

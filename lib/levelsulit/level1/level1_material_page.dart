@@ -3,7 +3,8 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'level1_game_page.dart';
 
 class SulitLevel1SulitMaterialPage extends StatefulWidget {
-  const SulitLevel1SulitMaterialPage({super.key});
+  final String username;
+  const SulitLevel1SulitMaterialPage({super.key, required this.username});
 
   @override
   State<SulitLevel1SulitMaterialPage> createState() =>
@@ -36,7 +37,7 @@ class _SulitLevel1SulitMaterialPageState extends State<SulitLevel1SulitMaterialP
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => const SulitLevel1GamePage(),
+          builder: (_) => SulitLevel1GamePage(username: widget.username),
         ),
       );
     });
@@ -176,33 +177,37 @@ class _SulitLevel1SulitMaterialPageState extends State<SulitLevel1SulitMaterialP
                     const SizedBox(height: 16),
 
                     // ===== TEXT MATERI LEVEL SULIT =====
-                    Container(
-                      height: 120,
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      alignment: Alignment.topCenter,
-                      child: AnimatedTextKit(
-                        isRepeatingAnimation: false,
-                        animatedTexts: [
-                          TypewriterAnimatedText(
-                            "Di inti sistem, setiap soket memiliki fungsi"
-                            "yang saling berkaitan.\n"
-                            "Logika membantu RoboBits \n"
-                            "menentukan hubungan yang tepat antar komponen.\n"
-                            "Menghubungkan soket dengan benar berarti"
-                            "memahami kecocokan dan pola hubungan.",
-                            speed: const Duration(milliseconds: 35),
-                            cursor: "|",
-                            textAlign: TextAlign.center,
-                            textStyle: const TextStyle(
-                              fontSize: 13,
-                              height: 1.6,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black87,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    Expanded(
+  child: Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 24),
+    child: SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: AnimatedTextKit(
+        isRepeatingAnimation: false,
+        animatedTexts: [
+          TypewriterAnimatedText(
+            "Di inti sistem, setiap soket memiliki fungsi "
+            "yang saling berkaitan.\n\n"
+            "Logika membantu RoboBits "
+            "menentukan hubungan yang tepat antar komponen.\n"
+            "Menghubungkan soket dengan benar berarti "
+            "memahami kecocokan dan pola hubungan.",
+            speed: const Duration(milliseconds: 35),
+            cursor: "|",
+            textAlign: TextAlign.center,
+            textStyle: const TextStyle(
+              fontSize: 13,
+              height: 1.6,
+              fontWeight: FontWeight.w600,
+              color: Colors.black87,
+            ),
+          ),
+        ],
+      ),
+    ),
+  ),
+),
+
 
                   ],
                 ),

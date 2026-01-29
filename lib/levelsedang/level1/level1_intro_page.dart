@@ -4,7 +4,8 @@ import 'level1_material_page.dart';
 import 'package:robobits/audio/level1_bgm.dart';
 
 class SedangLevel1IntroPage extends StatefulWidget {
-  const SedangLevel1IntroPage({super.key});
+  final String username;
+  const SedangLevel1IntroPage({super.key, required this.username});
 
   @override
   State<SedangLevel1IntroPage> createState() =>
@@ -82,7 +83,7 @@ class _SedangLevel1IntroPageState extends State<SedangLevel1IntroPage>
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => const SedangLevel1MaterialPage(),
+          builder: (_) => SedangLevel1MaterialPage(username: widget.username),
         ),
       );
     }
@@ -143,8 +144,7 @@ class _SedangLevel1IntroPageState extends State<SedangLevel1IntroPage>
                   opacity: _showText ? 1 : 0,
                   duration: const Duration(milliseconds: 800),
                   child: const Text(
-                    "Selamat datang di Zona Konstruksi Data\n"
-                    "Setiap bentuk memiliki fungsi.\n",
+                    "Selamat datang di Zona Konstruksi Data\n",
                     
                     textAlign: TextAlign.center,
                     style: TextStyle(

@@ -5,7 +5,8 @@ import 'package:robobits/audio/level1_bgm.dart';
 
 
 class SedangLevel3SedangIntroPage extends StatefulWidget {
-  const SedangLevel3SedangIntroPage({super.key});
+  final String username;
+  const SedangLevel3SedangIntroPage({super.key, required this.username});
 
   @override
   State<SedangLevel3SedangIntroPage> createState() => _SedangLevel3SedangIntroPageState();
@@ -80,7 +81,7 @@ class _SedangLevel3SedangIntroPageState extends State<SedangLevel3SedangIntroPag
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => const Level3SedangMaterialPage(),
+          builder: (_) => Level3SedangMaterialPage(username: widget.username),
         ),
       );
     }

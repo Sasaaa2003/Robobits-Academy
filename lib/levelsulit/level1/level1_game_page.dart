@@ -12,7 +12,8 @@ const double arenaPadding = 20;
 
 /* ================= PAGE ================= */
 class SulitLevel1GamePage extends StatefulWidget {
-  const SulitLevel1GamePage({super.key});
+  final String username;
+  const SulitLevel1GamePage({super.key, required this.username});
 
   @override
   State<SulitLevel1GamePage> createState() =>
@@ -125,7 +126,7 @@ class _SulitLevel1GamePageState
         context: context,
         barrierDismissible: false,
         builder: (_) =>
-            const SulitLevel1ResultDialog(score: 500),
+            SulitLevel1ResultDialog(score: 500, username: widget.username),
       );
     }
   }
@@ -295,7 +296,7 @@ class _SulitLevel1GamePageState
                   context,
                   MaterialPageRoute(
                     builder: (_) =>
-                        const LevelSulitPage(),
+                        LevelSulitPage(username: widget.username),
                   ),
                 );
               },

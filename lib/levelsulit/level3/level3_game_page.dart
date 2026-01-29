@@ -12,7 +12,8 @@ const int totalArena = 4;
 
 /* ================= PAGE ================= */
 class SulitLevel3GamePage extends StatefulWidget {
-  const SulitLevel3GamePage({super.key});
+  final String username;
+  const SulitLevel3GamePage({super.key, required this.username});
 
   @override
   State<SulitLevel3GamePage> createState() => _SulitLevel3GamePageState();
@@ -52,7 +53,7 @@ class _SulitLevel3GamePageState extends State<SulitLevel3GamePage> {
       showDialog(
         context: context,
         barrierDismissible: false,
-        builder: (_) => const SulitLevel3ResultDialog(score: 800),
+        builder: (_) => SulitLevel3ResultDialog(score: 800, username: widget.username),
       );
     }
   }
@@ -128,7 +129,7 @@ class _SulitLevel3GamePageState extends State<SulitLevel3GamePage> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const LevelSulitPage(),
+                    builder: (_) => LevelSulitPage(username: widget.username),
                   ),
                 );
               },

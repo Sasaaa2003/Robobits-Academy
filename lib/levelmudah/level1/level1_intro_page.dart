@@ -6,11 +6,17 @@ import 'package:robobits/audio/level1_bgm.dart';
 
 
 class Level1IntroPage extends StatefulWidget {
-  const Level1IntroPage({super.key});
+  final String username;
+
+  const Level1IntroPage({
+    super.key,
+    required this.username,
+  });
 
   @override
   State<Level1IntroPage> createState() => _Level1IntroPageState();
 }
+
 
 class _Level1IntroPageState extends State<Level1IntroPage>
     with TickerProviderStateMixin {
@@ -85,7 +91,7 @@ class _Level1IntroPageState extends State<Level1IntroPage>
     if (mounted) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const Level1MaterialPage()),
+        MaterialPageRoute(builder: (_) => Level1MaterialPage(username: widget.username)),
       );
     }
   }

@@ -2,10 +2,17 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:robobits/level_mudah_page.dart';
+import 'package:robobits/services/score_service.dart';
 
 class Level1ResultDialog extends StatefulWidget {
   final int score;
-  const Level1ResultDialog({super.key, required this.score});
+  final String username;
+
+  const Level1ResultDialog({
+    super.key,
+    required this.score,
+    required this.username,
+  });
 
   @override
   State<Level1ResultDialog> createState() => _Level1ResultDialogState();
@@ -28,13 +35,11 @@ class _Level1ResultDialogState extends State<Level1ResultDialog>
   void initState() {
     super.initState();
 
-    // 🎬 PARTICLE ANIMATION
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 6),
     )..repeat();
 
-    // 🔊 AUDIO WINNER
     _audioPlayer = AudioPlayer();
     _audioPlayer.play(
       AssetSource('Audios/winner.mp3'),
@@ -55,7 +60,7 @@ class _Level1ResultDialogState extends State<Level1ResultDialog>
       backgroundColor: Colors.black.withOpacity(0.45),
       body: Stack(
         children: [
-          // 🌟 PARTICLE EFFECT
+          // 🌟 PARTICLE
           AnimatedBuilder(
             animation: _controller,
             builder: (_, __) {
@@ -114,6 +119,7 @@ class _Level1ResultDialogState extends State<Level1ResultDialog>
                             color: Colors.white,
                           ),
                         ),
+
                         const SizedBox(height: 16),
 
                         Row(
@@ -128,6 +134,7 @@ class _Level1ResultDialogState extends State<Level1ResultDialog>
                         ),
 
                         const SizedBox(height: 20),
+
                         const Text(
                           "Score",
                           style: TextStyle(
@@ -138,6 +145,7 @@ class _Level1ResultDialogState extends State<Level1ResultDialog>
                         ),
 
                         const SizedBox(height: 10),
+
                         Container(
                           width: double.infinity,
                           padding: const EdgeInsets.symmetric(vertical: 12),
@@ -158,14 +166,18 @@ class _Level1ResultDialogState extends State<Level1ResultDialog>
 
                         const SizedBox(height: 20),
 
-                        // ▶ NEXT BUTTON
+                        // ▶ NEXT
                         GestureDetector(
-                          onTap: () {
+                          onTap: () async {
+                            await ScoreService.saveScore(
+                                "mudah", widget.score);
+
                             _audioPlayer.stop();
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (_) => const LevelMudahPage(),
+                                builder: (_) =>
+                                    LevelMudahPage(username: widget.username),
                               ),
                             );
                           },
@@ -198,7 +210,7 @@ class _Level1ResultDialogState extends State<Level1ResultDialog>
                   ),
                 ),
 
-                // ❌ CLOSE BUTTON
+                // ❌ CLOSE
                 Positioned(
                   top: -14,
                   right: -14,

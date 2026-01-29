@@ -1,11 +1,13 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:robobits/level_mudah_page.dart';
+import 'package:robobits/level_sulit_page.dart';
+import 'package:robobits/services/score_service.dart';
 
 class SulitLevel2ResultDialog extends StatefulWidget {
   final int score;
-  const SulitLevel2ResultDialog({super.key, required this.score});
+  final String username;
+  const SulitLevel2ResultDialog({super.key, required this.score, required this.username});
 
   @override
   State<SulitLevel2ResultDialog> createState() => _SulitLevel2ResultDialogState();
@@ -160,15 +162,19 @@ class _SulitLevel2ResultDialogState extends State<SulitLevel2ResultDialog>
 
                         // ▶ NEXT BUTTON
                         GestureDetector(
-                          onTap: () {
-                            _audioPlayer.stop();
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => const LevelMudahPage(),
-                              ),
-                            );
-                          },
+                          onTap: () async {
+  _audioPlayer.stop();
+
+  // 💾 SIMPAN SCORE LEVEL SEDANG
+  await ScoreService.saveScore("sedang", widget.score);
+
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+      builder: (_) => LevelSulitPage(username: widget.username),
+    ),
+  );
+},
                           child: Container(
                             height: 46,
                             decoration: BoxDecoration(

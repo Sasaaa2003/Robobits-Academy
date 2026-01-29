@@ -3,7 +3,8 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'level3_game_page.dart';
 
 class SulitLevel3SulitMaterialPage extends StatefulWidget {
-  const SulitLevel3SulitMaterialPage({super.key});
+  final String username;
+  const SulitLevel3SulitMaterialPage({super.key, required this.username});
 
   @override
   State<SulitLevel3SulitMaterialPage> createState() =>
@@ -40,7 +41,7 @@ class _SulitLevel3SulitMaterialPageState
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => const SulitLevel3GamePage(),
+          builder: (_) => SulitLevel3GamePage(username: widget.username),
         ),
       );
     });
@@ -194,7 +195,7 @@ class _SulitLevel3SulitMaterialPageState
                         isRepeatingAnimation: false,
                         animatedTexts: [
                           TypewriterAnimatedText(
-                            "Algoritma mengajarkan bahwa setiap proses memiliki urutan yang tepat.\nMengurutkan warna melatih RoboBits memahami prioritas dan langkah berurutan.\nSatu kesalahan urutan dapat mengulang seluruh proses."
+                            "Algoritma mengajarkan bahwa setiap proses memiliki urutan yang tepat.\n\n"
                             "Mengurutkan warna melatih RoboBits memahami prioritas dan langkah berurutan.\nSatu kesalahan urutan dapat mengulang seluruh proses."
                             "Satu kesalahan urutan dapat mengulang seluruh proses.",
                             speed:

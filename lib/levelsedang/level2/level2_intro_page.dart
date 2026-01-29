@@ -4,7 +4,8 @@ import 'level2_material_page.dart';
 import 'package:robobits/audio/level1_bgm.dart';
 
 class SedangLevel2IntroPage extends StatefulWidget {
-  const SedangLevel2IntroPage({super.key});
+  final String username;
+  const SedangLevel2IntroPage({super.key, required this.username});
 
   @override
   State<SedangLevel2IntroPage> createState() =>
@@ -82,7 +83,7 @@ class _SedangLevel2IntroPageState extends State<SedangLevel2IntroPage>
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => const SedangLevel2MaterialPage(),
+          builder: (_) => SedangLevel2MaterialPage(username: widget.username),
         ),
       );
     }
@@ -143,7 +144,7 @@ class _SedangLevel2IntroPageState extends State<SedangLevel2IntroPage>
                   opacity: _showText ? 1 : 0,
                   duration: const Duration(milliseconds: 800),
                   child: const Text(
-                    "Selamat melanjutkan. Hitungan yang tepat menjaga keseimbangan.",
+                    "Selamat melanjutkan perjalanan. \n",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,

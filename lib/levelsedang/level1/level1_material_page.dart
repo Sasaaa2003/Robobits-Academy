@@ -3,7 +3,8 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'level1_game_page.dart';
 
 class SedangLevel1MaterialPage extends StatefulWidget {
-  const SedangLevel1MaterialPage({super.key});
+  final String username;
+  const SedangLevel1MaterialPage({super.key, required this.username});
 
   @override
   State<SedangLevel1MaterialPage> createState() =>
@@ -36,7 +37,7 @@ class _SedangLevel1MaterialPageState extends State<SedangLevel1MaterialPage>
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => const SedangLevel1GamePage(),
+          builder: (_) => SedangLevel1GamePage(username: widget.username),
         ),
       );
     });
@@ -197,8 +198,8 @@ class _SedangLevel1MaterialPageState extends State<SedangLevel1MaterialPage>
                         isRepeatingAnimation: false,
                         animatedTexts: [
                           TypewriterAnimatedText(
-                            "Di zona ini, RoboBits mempelajari bentuk sebagai struktur dasar."
-                            "Logika membantu mengenali persamaan dan perbedaan bentuk rumah agar dapat diklasifikasikan dengan benar."
+                            "Di zona ini, RoboBits mempelajari bentuk sebagai struktur dasar.\n\n"
+                            "Logika membantu mengenali persamaan dan perbedaan bentuk rumah agar dapat diklasifikasikan dengan benar.\n"
                             "Kemampuan ini penting untuk memahami struktur data.",
                             speed:
                                 const Duration(milliseconds: 40),

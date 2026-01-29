@@ -2,10 +2,17 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:robobits/level_mudah_page.dart';
+import 'package:robobits/services/score_service.dart';
 
 class Level3ResultDialog extends StatefulWidget {
   final int score;
-  const Level3ResultDialog({super.key, required this.score});
+  final String username;
+
+  const Level3ResultDialog({
+    super.key,
+    required this.score,
+    required this.username,
+  });
 
   @override
   State<Level3ResultDialog> createState() => _Level3ResultDialogState();
@@ -160,15 +167,21 @@ class _Level3ResultDialogState extends State<Level3ResultDialog>
 
                         // ▶ NEXT BUTTON
                         GestureDetector(
-                          onTap: () {
-                            _audioPlayer.stop();
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => const LevelMudahPage(),
-                              ),
-                            );
-                          },
+                         onTap: () async {
+  await ScoreService.saveScore("mudah", widget.score);
+
+  _audioPlayer.stop();
+
+  Navigator.pushAndRemoveUntil(
+    context,
+    MaterialPageRoute(
+      builder: (_) => LevelMudahPage(username: widget.username),
+    ),
+    (route) => false, // 🔥 hapus semua halaman lama
+  );
+},
+
+
                           child: Container(
                             height: 46,
                             decoration: BoxDecoration(

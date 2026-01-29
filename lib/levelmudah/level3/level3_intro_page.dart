@@ -4,7 +4,12 @@ import 'level3_material_page.dart';
 import 'package:robobits/audio/level1_bgm.dart';
 
 class Level3IntroPage extends StatefulWidget {
-  const Level3IntroPage({super.key});
+  final String username;
+
+  const Level3IntroPage({
+    super.key,
+    required this.username,
+  });
 
   @override
   State<Level3IntroPage> createState() => _Level3IntroPageState();
@@ -79,7 +84,7 @@ class _Level3IntroPageState extends State<Level3IntroPage>
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => const Level3MaterialPage(),
+          builder: (_) => Level3MaterialPage(username: widget.username),
         ),
       );
     }
@@ -134,8 +139,7 @@ class _Level3IntroPageState extends State<Level3IntroPage>
                   opacity: _showText ? 1 : 0,
                   duration: const Duration(milliseconds: 800),
                   child: const Text(
-                    "Selamat datang di tantangan berikutnya. \n"
-                    "Tentukan arah dan susun langkah untuk mencapai tujuan.",
+                    "Selamat datang di tantangan berikutnya. \n",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,

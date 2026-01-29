@@ -5,12 +5,11 @@ import 'package:robobits/audio/level1_bgm.dart';
 import 'level2_result_dialog.dart';
 import 'package:robobits/level_sulit_page.dart';
 
-/* ================= KONSTANTA ================= */
 const int totalLamp = 4;
 
-/* ================= PAGE ================= */
 class SulitLevel2GamePage extends StatefulWidget {
-  const SulitLevel2GamePage({super.key});
+  final String username;
+  const SulitLevel2GamePage({super.key, required this.username});
 
   @override
   State<SulitLevel2GamePage> createState() => _SulitLevel2GamePageState();
@@ -34,14 +33,12 @@ class _SulitLevel2GamePageState extends State<SulitLevel2GamePage> {
     _generatePuzzle();
   }
 
-  /* ================= LOGIC ================= */
-
   void _generatePuzzle() {
     honeyNumbers = List.generate(10, (i) => i + 1);
     final rand = Random();
     final emptyIndexes = <int>{};
 
-    while (emptyIndexes.length < 4) {
+    while (emptyIndexes.length < totalLamp) {
       emptyIndexes.add(rand.nextInt(9));
     }
 
@@ -84,7 +81,7 @@ class _SulitLevel2GamePageState extends State<SulitLevel2GamePage> {
         showDialog(
           context: context,
           barrierDismissible: false,
-          builder: (_) => const SulitLevel2ResultDialog(score: 600),
+          builder: (_) => SulitLevel2ResultDialog(score: 600, username: widget.username),
         );
       }
     } else {
@@ -101,10 +98,11 @@ class _SulitLevel2GamePageState extends State<SulitLevel2GamePage> {
     super.dispose();
   }
 
-  /* ================= UI ================= */
-
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double hexSize = screenWidth < 360 ? 52 : 62;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -114,9 +112,15 @@ class _SulitLevel2GamePageState extends State<SulitLevel2GamePage> {
             width: double.infinity,
             height: double.infinity,
           ),
+
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(25, 25, 25, 80),
+              padding: EdgeInsets.fromLTRB(
+                25,
+                25,
+                25,
+                MediaQuery.of(context).padding.bottom + 70,
+              ),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.8),
@@ -129,13 +133,28 @@ class _SulitLevel2GamePageState extends State<SulitLevel2GamePage> {
                     const SizedBox(height: 16),
                     _buildRobotText(),
                     const SizedBox(height: 16),
+
+                    /// === SCROLL AREA ===
                     Expanded(
-                      child: Column(
-                        children: [
-                          _buildHoneyComb(),
-                          const SizedBox(height: 50), // jarak ke tombol
-                          _buildNumberPad(),
-                        ],
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          return SingleChildScrollView(
+                            physics: const BouncingScrollPhysics(),
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(
+                                  minHeight: constraints.maxHeight),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  _buildHoneyComb(hexSize),
+                                  const SizedBox(height: 30),
+                                  _buildNumberPad(),
+                                  const SizedBox(height: 20),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ],
@@ -144,7 +163,6 @@ class _SulitLevel2GamePageState extends State<SulitLevel2GamePage> {
             ),
           ),
 
-          /// BACK
           Positioned(
             left: 24,
             bottom: 24,
@@ -154,9 +172,7 @@ class _SulitLevel2GamePageState extends State<SulitLevel2GamePage> {
                 Level1Bgm.stop();
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(
-                    builder: (_) => const LevelSulitPage(),
-                  ),
+                  MaterialPageRoute(builder: (_) => LevelSulitPage(username: widget.username)),
                 );
               },
               child: Image.asset("assets/btn back.png", width: 50),
@@ -179,7 +195,8 @@ class _SulitLevel2GamePageState extends State<SulitLevel2GamePage> {
           const SizedBox(width: 12),
           const Expanded(
             child: Text(
-              "Deretan angka muncul, tetapi beberapa bagian hilang.\nSistem menunggu angka yang tepat untuk melanjutkan proses."
+              "Deretan angka muncul, tetapi beberapa bagian hilang.\n"
+              "Sistem menunggu angka yang tepat untuk melanjutkan proses.\n"
               "Lengkapi angka pada sarang lebah!",
               style: TextStyle(fontSize: 10, fontWeight: FontWeight.w700),
             ),
@@ -211,7 +228,8 @@ class _SulitLevel2GamePageState extends State<SulitLevel2GamePage> {
                       totalLamp,
                       (i) => Opacity(
                         opacity: i < lampCount ? 1 : 0.3,
-                        child: Image.asset("assets/lamp.png", width: 22),
+                        child:
+                            Image.asset("assets/lamp.png", width: 22),
                       ),
                     ),
                   ),
@@ -219,9 +237,11 @@ class _SulitLevel2GamePageState extends State<SulitLevel2GamePage> {
                   LinearProgressIndicator(
                     value: lampCount / totalLamp,
                     minHeight: 6,
-                    backgroundColor: Colors.white.withOpacity(0.3),
+                    backgroundColor:
+                        Colors.white.withOpacity(0.3),
                     valueColor:
-                        const AlwaysStoppedAnimation<Color>(Colors.white),
+                        const AlwaysStoppedAnimation<Color>(
+                            Colors.white),
                   ),
                 ],
               ),
@@ -234,9 +254,9 @@ class _SulitLevel2GamePageState extends State<SulitLevel2GamePage> {
     );
   }
 
-  Widget _buildHoneyComb() {
+  Widget _buildHoneyComb(double size) {
     return Padding(
-      padding: const EdgeInsets.only(top: 30), // jarak TOP sarang lebah
+      padding: const EdgeInsets.only(top: 20),
       child: Wrap(
         alignment: WrapAlignment.center,
         spacing: 8,
@@ -252,8 +272,8 @@ class _SulitLevel2GamePageState extends State<SulitLevel2GamePage> {
             child: ClipPath(
               clipper: HexagonClipper(),
               child: Container(
-                width: 62,
-                height: 62,
+                width: size,
+                height: size,
                 alignment: Alignment.center,
                 color: value == null
                     ? (isSelected
@@ -309,14 +329,11 @@ class _SulitLevel2GamePageState extends State<SulitLevel2GamePage> {
   }
 }
 
-/* ================= HEXAGON ================= */
-
 class HexagonClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     final w = size.width;
     final h = size.height;
-
     return Path()
       ..moveTo(w * 0.25, 0)
       ..lineTo(w * 0.75, 0)

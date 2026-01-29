@@ -4,7 +4,8 @@ import 'level1_material_page.dart';
 import 'package:robobits/audio/level1_bgm.dart';
 
 class SulitLevel1SulitIntroPage extends StatefulWidget {
-  const SulitLevel1SulitIntroPage({super.key});
+  final String username;
+  const SulitLevel1SulitIntroPage({super.key, required this.username});
 
   @override
   State<SulitLevel1SulitIntroPage> createState() => _SulitLevel1SulitIntroPageState();
@@ -81,7 +82,7 @@ class _SulitLevel1SulitIntroPageState extends State<SulitLevel1SulitIntroPage>
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => const SulitLevel1SulitMaterialPage(),
+          builder: (_) => SulitLevel1SulitMaterialPage(username: widget.username),
         ),
       );
     }
@@ -137,7 +138,7 @@ class _SulitLevel1SulitIntroPageState extends State<SulitLevel1SulitIntroPage>
                   duration: const Duration(milliseconds: 800),
                   child: const Text(
                     "Selamat datang di Inti Kompilasi. \n"
-                    "Di sinilah logika sistem bekerja.\n",
+                    ,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Color.fromARGB(255, 255, 255, 255),
